@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 00:46:29 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/05 03:34:27 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/05 19:14:16 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,34 @@ void	ps_reverse_rotate(t_list **stack)
 	*stack = temp;
 }
 
+/* temp function */
+void	print_op(int operator)
+{
+	if (operator == PA)
+		ft_printf("pa");
+	else if (operator == PB)
+		ft_printf("pb");
+	else if (operator == SA)
+		ft_printf("sa");
+	else if (operator == SB)
+		ft_printf("sb");
+	else if (operator == SS)
+		ft_printf("ss");
+	else if (operator == RA)
+		ft_printf("ra");
+	else if (operator == RB)
+		ft_printf("rb");
+	else if (operator == RR)
+		ft_printf("rr");
+	else if (operator == RRA)
+		ft_printf("rra");
+	else if (operator == RRB)
+		ft_printf("rrb");
+	else if (operator == RRR)
+		ft_printf("rrr");
+	ft_printf("\n");
+}
+
 void	ps_operate(t_list **stack_a, t_list **stack_b, int operator)
 {
 	void	(*f)(t_list **stack);
@@ -86,4 +114,5 @@ void	ps_operate(t_list **stack_a, t_list **stack_b, int operator)
 		if (operator & XB)
 			f(stack_b);
 	}
+	print_op(operator);
 }

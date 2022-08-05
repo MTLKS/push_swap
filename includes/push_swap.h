@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/05 03:17:14 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/05 19:23:33 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define RRB	0b00100010
 # define RRR	0b00100011
 
-
+void	ps_sort_stack(t_list **stack_a);
 void	ps_quick_sort(t_list *first, t_list *last);
 t_list	*ps_get_stack(int argc, char **argv);
 void	ps_operate(t_list **stack_a, t_list **stack_b, int operator);
