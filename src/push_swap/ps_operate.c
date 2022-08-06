@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 00:46:29 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/05 19:14:16 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/06 21:47:11 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	print_op(int operator)
 		ft_printf("rrb");
 	else if (operator == RRR)
 		ft_printf("rrr");
-	ft_printf("\n");
+	ft_printf(" ");
 }
 
 void	ps_operate(t_list **stack_a, t_list **stack_b, int operator)

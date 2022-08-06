@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/05 19:23:33 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/06 22:28:31 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,24 @@ void	ps_quick_sort(t_list *first, t_list *last);
 t_list	*ps_get_stack(int argc, char **argv);
 void	ps_operate(t_list **stack_a, t_list **stack_b, int operator);
 
+/* ps_sort_stack.c */
+void	ps_sort_stack_100(t_list **stack_a);
+void	ps_sort_stack_500(t_list **stack_a);
+
+/* ps_sort_utils.c */
+int		ps_round(float f);
+void	ps_insert_sort_ba(t_list **a, t_list **b, float min, float max);
+void	ps_push_stack_a(t_list **a, t_list **b, float min, float max);
+void	ps_push_stack_b(t_list **a, t_list **b, float min, float max);
+void	ps_split_stack_ab(t_list **a, t_list **b, float min, float max);
+
+/* ps_index_stack.c */
 void	ps_index_stack(t_list **stack);
 
+/* ps_list_utils.c */
 void	ps_free_content(void *content);
 void	ps_print_stack(void *content);
+int		ps_lst_index(t_list *stack, float content);
+int		ps_lst_hasrange(t_list *stack, float min, float max);
 
 #endif

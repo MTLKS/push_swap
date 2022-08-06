@@ -6,74 +6,41 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 18:19:34 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/05 22:00:22 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/06 22:30:13 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_lstindex(t_list *stack, int content)
+static void	ps_push_push_sort(t_list **a, t_list **b, float min, float max)
 {
-	int	count;
-
-	count = 0;
-	while (stack)
-	{
-		if (*(int *)stack->content == content)
-			return (count);
-		stack = stack->next;
-		count++;
-	}
-	return (-1);
+	ps_push_stack_a(a, b, min, max);
+	ps_split_stack_ab(a, b, min, ps_round(max));
+	ps_insert_sort_ba(a, b, min, max);
 }
 
-int	stack_has_nodes_in_range(t_list *stack, int min, int max)
-{
-	while (stack)
-	{
-		if (*((int *)stack->content) >= min && *((int *)stack->content) < max)
-			return (1);
-		stack = stack->next;
-	}
-	return (0);
-}
-
-void	sort_back_a(t_list **a, t_list **b, int min, int max)
-{
-	while (stack_has_nodes_in_range(*b, min, max))
-	{
-		if (b && *(int *)(*b)->content == *((int *)(*a)->content) - 1)
-			ps_operate(a, b, PA);
-		if (!*b)
-			break ;
-	}
-}
-
-void	push_stack_b(t_list **a, t_list **b, int min, int max)
-{
-	int	midpoint;
-
-	midpoint = (max + min) / 2;
-	if (midpoint >= max - 1)
-		return ;
-	while (a && stack_has_nodes_in_range(*a, 0, midpoint))
-	{
-		if (*((int *)(*a)->content) < midpoint)
-		{
-			ps_operate(a, b, PB);
-			if (*(int *)(*b)->content < midpoint - (max - midpoint) / 2)
-				ps_operate(a, b, RB);
-		}
-		else
-			ps_operate(a, b, RA);
-	}
-	push_stack_b(a, b, midpoint, max);
-}
-
-void	ps_sort_stack(t_list **stack_a)
+void	ps_sort_stack_100(t_list **stack_a)
 {
 	t_list	*stack_b;
+	float	len;
 
 	stack_b = NULL;
-	push_stack_b(stack_a, &stack_b, 0, ft_lstsize(*stack_a));
+	len = ft_lstsize(*stack_a);
+	ps_push_stack_b(stack_a, &stack_b, 0, len);
+	ps_insert_sort_ba(stack_a, &stack_b, 0, len);
+}
+
+void	ps_sort_stack_500(t_list **stack_a)
+{
+	t_list	*stack_b;
+	float	len;
+
+	stack_b = NULL;
+	len = ft_lstsize(*stack_a);
+	ps_split_stack_ab(stack_a, &stack_b, 0, len);
+	ps_insert_sort_ba(stack_a, &stack_b, len * 0.75, len);
+	ps_push_push_sort(stack_a, &stack_b, len * 0.625, len * 0.75);
+	ps_push_push_sort(stack_a, &stack_b, len * 0.5, len * 0.625);
+	ps_push_push_sort(stack_a, &stack_b, len * 0.25, len * 0.5);
+	ps_push_push_sort(stack_a, &stack_b, 0, len * 0.25);
 }
