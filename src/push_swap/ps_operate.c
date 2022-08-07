@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 00:46:29 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/06 21:47:11 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/07 13:32:26 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,57 +62,29 @@ void	ps_reverse_rotate(t_list **stack)
 	*stack = temp;
 }
 
-/* temp function */
-void	print_op(int operator)
-{
-	if (operator == PA)
-		ft_printf("pa");
-	else if (operator == PB)
-		ft_printf("pb");
-	else if (operator == SA)
-		ft_printf("sa");
-	else if (operator == SB)
-		ft_printf("sb");
-	else if (operator == SS)
-		ft_printf("ss");
-	else if (operator == RA)
-		ft_printf("ra");
-	else if (operator == RB)
-		ft_printf("rb");
-	else if (operator == RR)
-		ft_printf("rr");
-	else if (operator == RRA)
-		ft_printf("rra");
-	else if (operator == RRB)
-		ft_printf("rrb");
-	else if (operator == RRR)
-		ft_printf("rrr");
-	ft_printf(" ");
-}
-
-void	ps_operate(t_list **stack_a, t_list **stack_b, int operator)
+void	ps_operate(t_ps_list **ps_list, int move)
 {
 	void	(*f)(t_list **stack);
 
-	if (operator & PX)
+	if (move & PX)
 	{
-		if (operator & XA)
-			ps_push(stack_b, stack_a);
+		if (move & XA)
+			ps_push(&(*ps_list)->stack_b, &(*ps_list)->stack_a);
 		else
-			ps_push(stack_a, stack_b);
+			ps_push(&(*ps_list)->stack_a, &(*ps_list)->stack_b);
 	}
 	else
 	{
-		if (operator & SX)
+		if (move & SX)
 			f = &ps_swap;
-		else if (operator & RX)
+		else if (move & RX)
 			f = &ps_rotate;
-		else if (operator & RRX)
+		else if (move & RRX)
 			f = &ps_reverse_rotate;
-		if (operator & XA)
-			f(stack_a);
-		if (operator & XB)
-			f(stack_b);
+		if (move & XA)
+			f(&(*ps_list)->stack_a);
+		if (move & XB)
+			f(&(*ps_list)->stack_b);
 	}
-	print_op(operator);
+	ps_oplst_add(&(*ps_list)->operations, move);
 }

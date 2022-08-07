@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/06 22:28:31 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/07 14:02:46 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,43 @@
 # define RRB	0b00100010
 # define RRR	0b00100011
 
-void	ps_sort_stack(t_list **stack_a);
+typedef struct s_ps_list
+{
+	t_list	*stack_a;
+	t_list	*stack_b;
+	t_list	*operations;
+}	t_ps_list;
+
 void	ps_quick_sort(t_list *first, t_list *last);
 t_list	*ps_get_stack(int argc, char **argv);
-void	ps_operate(t_list **stack_a, t_list **stack_b, int operator);
+void	ps_operate(t_ps_list **ps_list, int move);
 
-/* ps_sort_stack.c */
-void	ps_sort_stack_100(t_list **stack_a);
-void	ps_sort_stack_500(t_list **stack_a);
+/* ps_quicksort_stack.c */
+void	ps_quicksort_stack_100(t_ps_list **ps_list);
+void	ps_quicksort_stack(t_ps_list **ps_list);
 
-/* ps_sort_utils.c */
+/* ps_quicksort_stack_utils.c */
 int		ps_round(float f);
-void	ps_insert_sort_ba(t_list **a, t_list **b, float min, float max);
-void	ps_push_stack_a(t_list **a, t_list **b, float min, float max);
-void	ps_push_stack_b(t_list **a, t_list **b, float min, float max);
-void	ps_split_stack_ab(t_list **a, t_list **b, float min, float max);
+void	ps_insert_sort_ba(t_ps_list **ps_list, float min, float max);
+void	ps_push_stack_a(t_ps_list **ps_list, float min, float max);
+void	ps_split_stack_ab(t_ps_list **ps_list, float min, float max);
+
+/* ps_insertsort_stack.c */
+void	ps_push_stack_b(t_ps_list **ps_list, float min, float max);
+void	ps_insertsort_stack_100(t_ps_list **ps_list);
 
 /* ps_index_stack.c */
 void	ps_index_stack(t_list **stack);
 
 /* ps_list_utils.c */
 void	ps_free_content(void *content);
-void	ps_print_stack(void *content);
+void	*ps_return_content(void *content);
 int		ps_lst_index(t_list *stack, float content);
 int		ps_lst_hasrange(t_list *stack, float min, float max);
+int		ps_lst_issorted(t_list *stack);
+
+/* ps_op_list.c */
+void	ps_oplst_add(t_list **op, int move);
+void	ps_oplst_print(void *content);
 
 #endif

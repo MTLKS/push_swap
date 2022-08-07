@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 02:14:51 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/05 02:40:48 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/07 12:08:03 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static int	*ps_new_content(int count)
 	num = (int *)malloc(sizeof(int));
 	*num = count;
 	return (num);
-}
-
-static void	*ps_return_content(void *content)
-{
-	return (content);
 }
 
 void	ps_index_stack(t_list **stack)
