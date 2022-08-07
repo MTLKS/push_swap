@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 22:11:26 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 14:16:24 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/07 20:46:08 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ void	ps_insert_sort_ba(t_ps_list **ps_list, float min, float max)
 			ps_operate(ps_list, PA);
 		if (!*b || *(int *)(*a)->content - 1 < min)
 			break ;
-		if (ps_lst_index(*b, *(int *)(*a)->content - 1) < ft_lstsize(*b) / 2)
-			ps_operate(ps_list, RB);
-		else
-			ps_operate(ps_list, RRB);
+		if (!(b && *(int *)(*b)->content == *((int *)(*a)->content) - 1))
+		{
+			if (ps_lst_index(*b, *(int *)(*a)->content - 1)
+				< ft_lstsize(*b) / 2)
+				ps_operate(ps_list, RB);
+			else
+				ps_operate(ps_list, RRB);
+		}
 	}
 }
 

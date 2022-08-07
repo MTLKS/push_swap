@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 14:02:46 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/07 16:39:35 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ int		ps_lst_issorted(t_list *stack);
 /* ps_op_list.c */
 void	ps_oplst_add(t_list **op, int move);
 void	ps_oplst_print(void *content);
+
+void	ps_op_optimizer(t_list **op);
 
 #endif

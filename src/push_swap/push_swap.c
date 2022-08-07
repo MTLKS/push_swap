@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:52:45 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 14:31:36 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/07 22:59:25 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	ps_list->stack_b = NULL;
 	ps_list->operations = NULL;
 	ps_insertsort_stack_100(&ps_list);
+	ps_op_optimizer(&ps_list->operations);
 	ft_lstiter(ps_list->operations, &ps_oplst_print);
 	ft_lstclear(&ps_list->stack_a, &ps_free_content);
 	ft_lstclear(&ps_list->stack_b, &ps_free_content);
