@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 22:11:26 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 20:46:08 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/08 21:38:50 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ps_insert_sort_ba(t_ps_list **ps_list, float min, float max)
 	b = &(*ps_list)->stack_b;
 	while (ps_lst_hasrange(*b, min, max))
 	{
+		ft_printf("count moves: %d\n", ps_count_req_moves(*ps_list, ps_lst_value(*a, 0)));
 		if (!(*a)
 			|| (b && *(int *)(*b)->content == *((int *)(*a)->content) - 1))
 			ps_operate(ps_list, PA);

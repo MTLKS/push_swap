@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 16:39:35 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/08 21:33:03 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,18 @@ int		ps_lst_index(t_list *stack, float content);
 int		ps_lst_hasrange(t_list *stack, float min, float max);
 int		ps_lst_issorted(t_list *stack);
 
+t_list	*ps_lst_get(t_list *list, int index);
+int		ps_lst_min(t_list *list);
+int		ps_lst_max(t_list *list);
+int		ps_lst_value(t_list *list, int index);
+
 /* ps_op_list.c */
 void	ps_oplst_add(t_list **op, int move);
 void	ps_oplst_print(void *content);
 
 void	ps_op_optimizer(t_list **op);
+
+/* temp */
+int		ps_count_req_moves(t_ps_list *ps_list, int num);
 
 #endif
