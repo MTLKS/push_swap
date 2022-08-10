@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 02:16:06 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 12:08:04 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/10 05:39:15 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ps_return_content(void *content)
 	return (content);
 }
 
-int	ps_lst_index(t_list *stack, float content)
+int	ps_lst_index(t_list *stack, int content)
 {
 	int	count;
 
@@ -37,7 +37,7 @@ int	ps_lst_index(t_list *stack, float content)
 	return (-1);
 }
 
-int	ps_lst_hasrange(t_list *stack, float min, float max)
+int	ps_lst_hasrange(t_list *stack, int min, int max)
 {
 	int	content;
 

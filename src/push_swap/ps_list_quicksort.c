@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_quick_sort.c                                    :+:      :+:    :+:   */
+/*   ps_list_quicksort.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:51:19 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/04 00:59:01 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/10 20:41:57 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_list	*ps_partition(t_list *first, t_list *last)
 	return (pivot);
 }
 
-void	ps_quick_sort(t_list *first, t_list *last)
+void	ps_list_quicksort(t_list *first, t_list *last)
 {
 	t_list	*pivot;
 
@@ -50,7 +50,7 @@ void	ps_quick_sort(t_list *first, t_list *last)
 		return ;
 	pivot = ps_partition(first, last);
 	if (pivot && pivot->next)
-		ps_quick_sort(pivot->next, last);
+		ps_list_quicksort(pivot->next, last);
 	if (pivot && first != pivot)
-		ps_quick_sort(first, pivot);
+		ps_list_quicksort(first, pivot);
 }

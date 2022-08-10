@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 09:18:24 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 13:46:44 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/10 21:03:40 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ void	ps_oplst_print(void *content)
 
 	move = *((int *)(content));
 	if (move & PX)
-		write(1, "p", 1);
+		ft_printf("p");
 	else if (move & SX)
-		write(1, "s", 1);
+		ft_printf("s");
 	else if (move & RX)
-		write(1, "r", 1);
+		ft_printf("r");
 	else if (move & RRX)
-		write(1, "rr", 2);
+		ft_printf("rr");
 	if (move & XA && move & XB && move & SX)
-		write(1, "s", 1);
+		ft_printf("s");
 	else if (move & XA && move & XB && (move & RX || move & RRX))
-		write(1, "r", 1);
+		ft_printf("r");
 	else if (move & XA)
-		write(1, "a", 1);
+		ft_printf("a");
 	else
-		write(1, "b", 1);
-	write(1, " ", 1);
+		ft_printf("b");
+	ft_printf("\n");
 }

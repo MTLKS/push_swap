@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_index_stack.c                                   :+:      :+:    :+:   */
+/*   ps_stack_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 02:14:51 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/07 12:08:03 by maliew           ###   ########.fr       */
+/*   Created: 2022/08/03 00:48:56 by maliew            #+#    #+#             */
+/*   Updated: 2022/08/10 20:44:33 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,57 @@ static int	*ps_new_content(int count)
 void	ps_index_stack(t_list **stack)
 {
 	t_list	*sorted_stack;
-	t_list	*sorted_buffer;
 	t_list	*buffer;
-	int		count;
 
 	sorted_stack = ft_lstmap(*stack, &ps_return_content, &ps_free_content);
-	ps_quick_sort(sorted_stack, ft_lstlast(sorted_stack));
+	ps_list_quicksort(sorted_stack, ft_lstlast(sorted_stack));
 	buffer = *stack;
 	while (buffer)
 	{
-		sorted_buffer = sorted_stack;
-		count = 0;
-		while (sorted_buffer)
-		{
-			if (*((int *)buffer->content) == *((int *)sorted_buffer->content))
-			{
-				buffer->content = ps_new_content(count);
-				break ;
-			}
-			sorted_buffer = sorted_buffer->next;
-			count++;
-		}
+		buffer->content = ps_new_content(
+				ps_lst_index(sorted_stack, ps_lst_value(buffer, 0)));
 		buffer = buffer->next;
 	}
 	ft_lstclear(&sorted_stack, &ps_free_content);
+}
+
+static void	ps_add_stack(t_list **stack, char **arr)
+{
+	int	i;
+	int	*num;
+
+	i = -1;
+	while (arr[++i])
+	{
+		num = (int *)malloc(sizeof(int));
+		*num = ft_atoi(arr[i]);
+		ft_lstadd_back(stack, ft_lstnew(num));
+	}
+}
+
+static void	ps_free_arr(char **arr)
+{
+	int	i;
+
+	i = -1;
+	while (arr[++i])
+		free(arr[i]);
+	free(arr);
+}
+
+t_list	*ps_get_stack(int argc, char **argv)
+{
+	t_list	*stack;
+	char	**arr;
+	int		i;
+
+	i = 0;
+	stack = NULL;
+	while (++i < argc)
+	{
+		arr = ft_split(argv[i], ' ');
+		ps_add_stack(&stack, arr);
+		ps_free_arr(arr);
+	}
+	return (stack);
 }

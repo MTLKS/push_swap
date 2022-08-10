@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:53:42 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/08 21:33:20 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/10 20:48:23 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ps_lst_min(t_list *list)
 {
 	int	temp;
 
+	temp = INT_MAX;
 	while (list)
 	{
 		if (*(int *)list->content < temp)
@@ -55,6 +56,7 @@ int	ps_lst_max(t_list *list)
 {
 	int	temp;
 
+	temp = INT_MIN;
 	while (list)
 	{
 		if (*(int *)list->content > temp)
@@ -62,4 +64,19 @@ int	ps_lst_max(t_list *list)
 		list = list->next;
 	}
 	return (temp);
+}
+
+int	ps_lst_indexinrange(t_list *list, int min, int max)
+{
+	int	count;
+
+	count = 0;
+	while (list)
+	{
+		if (*(int *)list->content >= min && *(int *)list->content < max)
+			break ;
+		list = list->next;
+		count++;
+	}
+	return (count);
 }
