@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/10 20:59:11 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/11 01:22:12 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,20 @@ void	ps_list_quicksort(t_list *first, t_list *last);
 void	ps_oplst_add(t_list **op, int move);
 void	ps_oplst_print(void *content);
 
-/* ps_op_optimizer.c */
-void	ps_op_optimizer(t_list **op);
+/* ps_optimize.c */
+void	ps_optimize(t_list **op);
+
+/* ps_optimize_utils.c */
+void	ps_replace_and_delete(t_list *buffer, int move);
+void	ps_replace_and_delete2(t_list *buffer, int move);
 
 /* ps_range_utils.c */
 int		*ps_range_new(int min, int max);
 int		ps_range_get(t_list *range, int max);
+
+/* ps_error.c */
+void	ps_exiterror(void);
+void	ps_checkdupe(t_list *stack);
+int		ps_checkarr(char **arr);
 
 #endif

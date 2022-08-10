@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:52:45 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/10 21:10:24 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/11 01:13:30 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,22 @@ int	main(int argc, char **argv)
 	t_list		*stack;
 
 	stack = ps_get_stack(argc, argv);
-	if (!ps_lst_issorted(stack))
+	ps_checkdupe(stack);
+	if (ps_lst_issorted(stack))
 	{
-		ps_index_stack(&stack);
-		ps_list = (t_ps_list *)malloc(sizeof(t_ps_list));
-		ps_list->stack_a = stack;
-		ps_list->stack_b = NULL;
-		ps_list->operations = NULL;
-		ps_sort_stack(&ps_list);
-		ps_op_optimizer(&ps_list->operations);
-		ft_lstiter(ps_list->operations, &ps_oplst_print);
-		ft_lstclear(&ps_list->operations, &ps_free_content);
-		free(ps_list);
+		ft_lstclear(&stack, &ps_free_content);
+		return (0);
 	}
-	ft_lstclear(&stack, &ps_free_content);
+	ps_index_stack(&stack);
+	ps_list = (t_ps_list *)malloc(sizeof(t_ps_list));
+	ps_list->stack_a = stack;
+	ps_list->stack_b = NULL;
+	ps_list->operations = NULL;
+	ps_sort_stack(&ps_list);
+	ps_optimize(&ps_list->operations);
+	ft_lstiter(ps_list->operations, &ps_oplst_print);
+	ft_lstclear(&ps_list->stack_a, &ps_free_content);
+	ft_lstclear(&ps_list->stack_b, &ps_free_content);
+	ft_lstclear(&ps_list->operations, &ps_free_content);
+	free(ps_list);
 }

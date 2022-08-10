@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:48:56 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/10 20:44:33 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/11 00:05:21 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,6 @@ void	ps_index_stack(t_list **stack)
 	ft_lstclear(&sorted_stack, &ps_free_content);
 }
 
-static void	ps_add_stack(t_list **stack, char **arr)
-{
-	int	i;
-	int	*num;
-
-	i = -1;
-	while (arr[++i])
-	{
-		num = (int *)malloc(sizeof(int));
-		*num = ft_atoi(arr[i]);
-		ft_lstadd_back(stack, ft_lstnew(num));
-	}
-}
-
 static void	ps_free_arr(char **arr)
 {
 	int	i;
@@ -60,6 +46,20 @@ static void	ps_free_arr(char **arr)
 	while (arr[++i])
 		free(arr[i]);
 	free(arr);
+}
+
+static void	ps_add_stack(t_list **stack, char **arr)
+{
+	int		i;
+	int		*num;
+
+	i = -1;
+	while (arr[++i])
+	{
+		num = (int *)malloc(sizeof(int));
+		*num = ft_atoi(arr[i]);
+		ft_lstadd_back(stack, ft_lstnew(num));
+	}
 }
 
 t_list	*ps_get_stack(int argc, char **argv)
@@ -73,6 +73,12 @@ t_list	*ps_get_stack(int argc, char **argv)
 	while (++i < argc)
 	{
 		arr = ft_split(argv[i], ' ');
+		if (ps_checkarr(arr))
+		{
+			ps_free_arr(arr);
+			ft_lstclear(&stack, &ps_free_content);
+			ps_exiterror();
+		}
 		ps_add_stack(&stack, arr);
 		ps_free_arr(arr);
 	}
