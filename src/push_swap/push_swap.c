@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 00:52:45 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/11 01:13:30 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/11 02:16:29 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	main(int argc, char **argv)
 	t_ps_list	*ps_list;
 	t_list		*stack;
 
+	if (argc == 1)
+		return (0);
 	stack = ps_get_stack(argc, argv);
 	ps_checkdupe(stack);
 	if (ps_lst_issorted(stack))

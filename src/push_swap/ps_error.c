@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:36:29 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/11 00:29:55 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/12 01:28:55 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,21 @@ void	ps_checkdupe(t_list *stack)
 static void	ps_remove_leading_chars(char *str)
 {
 	int	i;
+	int	plus;
 
 	i = -1;
+	plus = 0;
 	while (ft_strchr("0 +\t", str[++i]) && str[i + 1])
+	{
+		if (str[i] == '+')
+		{
+			if (plus)
+				return ;
+			else
+				plus = 1;
+		}
 		str[i] = ' ';
+	}
 }
 
 int	ps_checkarr(char **arr)
@@ -70,7 +81,5 @@ int	ps_checkarr(char **arr)
 		if (res)
 			return (res);
 	}
-	if (i == 0)
-		return (1);
-	return (0);
+	return (i == 0);
 }
