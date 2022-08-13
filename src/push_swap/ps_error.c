@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 21:36:29 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/12 01:28:55 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 18:30:04 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,46 +40,33 @@ void	ps_checkdupe(t_list *stack)
 	}
 }
 
-static void	ps_remove_leading_chars(char *str)
+static int	ps_checkstr(char *str)
 {
 	int	i;
-	int	plus;
 
-	i = -1;
-	plus = 0;
-	while (ft_strchr("0 +\t", str[++i]) && str[i + 1])
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i])
 	{
-		if (str[i] == '+')
-		{
-			if (plus)
-				return ;
-			else
-				plus = 1;
-		}
-		str[i] = ' ';
+		if (!ft_isdigit(str[i]))
+			return (1);
+		i++;
 	}
+	return (0);
 }
 
 int	ps_checkarr(char **arr)
 {
-	char	*a;
-	char	*b;
-	int		res;
-	int		i;
+	int	i;
 
 	i = -1;
 	while (arr[++i])
 	{
-		a = ft_itoa(ft_atoi(arr[i]));
-		ps_remove_leading_chars(arr[i]);
-		b = ft_strtrim(arr[i], " \t");
-		res = (ft_strncmp(a, b, ft_strlen(a) + ft_strlen(b)) || !ft_strlen(b));
-		if (ft_atoi(arr[i]) == 0 && !ft_strlen(b))
-			res = 0;
-		free(a);
-		free(b);
-		if (res)
-			return (res);
+		if (ps_checkstr(arr[i]))
+			return (1);
+		if (ps_atol(arr[i]) != ft_atoi(arr[i]))
+			return (1);
 	}
 	return (i == 0);
 }

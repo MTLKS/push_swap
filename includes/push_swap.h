@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 16:30:55 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 18:30:46 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,8 @@ int		ps_max(int a, int b);
 void	ps_exiterror(void);
 void	ps_checkdupe(t_list *stack);
 int		ps_checkarr(char **arr);
+
+/* ps_atol.c */
+long	ps_atol(const char *str);
 
 #endif
