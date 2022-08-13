@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 22:11:26 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/10 20:59:10 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 03:13:06 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,11 @@ void	ps_split_op(t_ps_list **ps_list, int min, int max)
 
 void	ps_push_last(t_ps_list **ps_list, int min, int max)
 {
-	if (ps_lst_indexinrange((*ps_list)->stack_a, min, max)
-		> ft_lstsize((*ps_list)->stack_a) / 2)
-		ps_operate(ps_list, RRA);
-	ps_operate(ps_list, PB);
+	while (ps_lst_hasrange((*ps_list)->stack_a, min, max))
+	{
+		if (ps_lst_indexinrange((*ps_list)->stack_a, min, max)
+			> ft_lstsize((*ps_list)->stack_a) / 2)
+			ps_operate(ps_list, RRA);
+		ps_operate(ps_list, PB);
+	}
 }

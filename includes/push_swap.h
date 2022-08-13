@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/11 01:22:12 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 01:58:15 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 # define RRA	0b00100001
 # define RRB	0b00100010
 # define RRR	0b00100011
+
+# ifndef MIN_STACK_SIZE
+#  define MIN_STACK_SIZE 100
+# endif
 
 typedef struct s_ps_list
 {
