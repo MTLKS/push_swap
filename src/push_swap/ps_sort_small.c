@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 15:33:51 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 16:20:13 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 17:33:02 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,19 @@ static void	ps_sort_three(t_ps_list **ps_list)
 void	ps_sort_small(t_ps_list **ps_list)
 {
 	t_list	**a;
-	t_list	*r;
-	int		*range;
+	t_list	*range;
 
 	a = &(*ps_list)->stack_a;
 	if (ft_lstsize(*a) == 2)
 		ps_operate(ps_list, SA);
 	else
 	{
-		r = (t_list *)malloc(sizeof(t_list));
-		range = (int *)malloc(2 * sizeof(int));
-		range[0] = 0;
-		range[1] = ft_lstsize(*a);
-		r = ft_lstnew(range);
+		range = ft_lstnew(ps_range_new(0, ft_lstsize(*a)));
 		while (ft_lstsize(*a) > 3)
 			ps_operate(ps_list, PB);
 		ps_sort_three(ps_list);
-		ps_smart_insert_stack(ps_list, &r);
+		ps_smart_insert_stack(ps_list, &range);
 		ps_loop_stack(ps_list);
+		ft_lstclear(&range, &ps_free_content);
 	}
 }
