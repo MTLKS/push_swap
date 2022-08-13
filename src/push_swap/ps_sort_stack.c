@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 13:57:28 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 15:20:05 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 16:13:29 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ps_split_stack(t_ps_list **ps_list, t_list **range)
 	ps_split_stack(ps_list, range);
 }
 
-static void	ps_loop_stack(t_ps_list **ps_list)
+void	ps_loop_stack(t_ps_list **ps_list)
 {
 	t_list	**a;
 	int		len;

@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 15:21:55 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 16:13:27 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@ void	ps_index_stack(t_list **stack);
 /* ps_operate.c */
 void	ps_operate(t_ps_list **ps_list, int move);
 
+/* ps_sort_small.c */
+void	ps_sort_small(t_ps_list **ps_list);
+
 /* ps_sort_stack.c */
 void	ps_sort_stack(t_ps_list **ps_list);
+void	ps_loop_stack(t_ps_list **ps_list);
 
 /* ps_sort_utils.c */
 void	ps_insert_op(t_ps_list **ps_list, int min, int max);
