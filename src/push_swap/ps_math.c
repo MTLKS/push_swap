@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_optimize_utils.c                                :+:      :+:    :+:   */
+/*   ps_math.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 01:14:08 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 15:29:26 by maliew           ###   ########.fr       */
+/*   Created: 2022/08/13 15:16:02 by maliew            #+#    #+#             */
+/*   Updated: 2022/08/13 15:21:32 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_replace_and_delete(t_list *buffer, int move)
+int	ps_abs(int n)
 {
-	t_list	*temp;
-
-	temp = buffer->next;
-	*(int *)buffer->content = move;
-	buffer->next = buffer->next->next;
-	ft_lstdelone(temp, &ps_free_content);
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
-void	ps_replace_and_delete2(t_list *buffer, int move)
+int	ps_max(int a, int b)
 {
-	t_list	*temp;
-
-	temp = buffer->next->next;
-	*(int *)buffer->content = move;
-	buffer->next->next = buffer->next->next->next;
-	ft_lstdelone(temp, &ps_free_content);
+	if (a > b)
+		return (a);
+	return (b);
 }

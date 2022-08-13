@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:44:39 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 01:58:15 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 15:21:55 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	ps_insert_op(t_ps_list **ps_list, int min, int max);
 void	ps_push_op(t_ps_list **ps_list, int min, int max);
 void	ps_split_op(t_ps_list **ps_list, int min, int max);
 void	ps_push_last(t_ps_list **ps_list, int min, int max);
+void	ps_copy_arr(int count, int *from, int *to);
+
+/* ps_smart_insert_stack.c */
+void	ps_smart_insert_stack(t_ps_list **ps_list, t_list **r);
 
 /* ps_list_utils.c */
 void	ps_free_content(void *content);
@@ -94,6 +98,10 @@ void	ps_replace_and_delete2(t_list *buffer, int move);
 /* ps_range_utils.c */
 int		*ps_range_new(int min, int max);
 int		ps_range_get(t_list *range, int max);
+
+/* ps_math.c */
+int		ps_abs(int n);
+int		ps_max(int a, int b);
 
 /* ps_error.c */
 void	ps_exiterror(void);

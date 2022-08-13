@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 22:11:26 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 03:13:06 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 15:19:35 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,10 @@ void	ps_push_last(t_ps_list **ps_list, int min, int max)
 			ps_operate(ps_list, RRA);
 		ps_operate(ps_list, PB);
 	}
+}
+
+void	ps_copy_arr(int count, int *from, int *to)
+{
+	while (count--)
+		to[count] = from[count];
 }

@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 16:05:16 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/11 01:24:31 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 15:29:18 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ps_remove_op(t_list **op)
 	{
 		a = *(int *)buffer->next->content;
 		b = *(int *)buffer->next->next->content;
-
 		if ((a | b) == (PX | XA | XB))
 		{
 			temp = buffer->next;
