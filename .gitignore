@@ -1,8 +1,10 @@
 .vscode
 libft
-checker_linux
 obj
 checker_Mac
+checker_linux
+checker
+!checker/
 test
 push_swap
 !push_swap/

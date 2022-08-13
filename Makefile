@@ -15,7 +15,7 @@ CHECKER_SRCS	= $(foreach x, $(SRC_PATH), $(wildcard $(addprefix $(x)/$(CHECKER)/
 PUSHSWAP_OBJS	= $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(PUSHSWAP_SRCS)))))
 CHECKER_OBJS	= $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(CHECKER_SRCS)))))
 
-all:	$(NAME)
+all:	$(NAME) bonus
 
 bonus:	$(CHECKER)
 
