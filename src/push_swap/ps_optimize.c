@@ -6,12 +6,17 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 16:05:16 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 15:29:18 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 20:05:49 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+	merges operations
+	RA PB RRA -> SA PB
+	RB PA RRB -> SB PA
+*/
 void	ps_replace_swap_op(t_list *op)
 {
 	int		a;
@@ -36,6 +41,12 @@ void	ps_replace_swap_op(t_list *op)
 	}
 }
 
+/*
+	merges operations
+	SA SB or SB SA -> SS
+	RA RB or RB RA -> RR
+	RRA RRB or RRB RRA -> RRR
+*/
 void	ps_merge_op(t_list *op)
 {
 	int	curr;
@@ -55,6 +66,9 @@ void	ps_merge_op(t_list *op)
 	}
 }
 
+/*
+	removes PA PB or PB PA
+*/
 void	ps_remove_op(t_list **op)
 {
 	t_list	*buffer;

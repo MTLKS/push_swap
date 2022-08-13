@@ -6,12 +6,15 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 22:11:26 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 16:30:55 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 19:18:50 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+	pushes all elements (min <= n < max) from stack b to stack a
+*/
 void	ps_push_op(t_ps_list **ps_list, int min, int max)
 {
 	t_list	**b;
@@ -31,6 +34,10 @@ void	ps_push_op(t_ps_list **ps_list, int min, int max)
 	}
 }
 
+/*
+	pushes all elements (min <= n < max) from stack a to stack b
+	if n < ((min + max) / 2), split to the bottom of stack b
+*/
 void	ps_split_op(t_ps_list **ps_list, int min, int max)
 {
 	t_list	**a;
@@ -56,6 +63,9 @@ void	ps_split_op(t_ps_list **ps_list, int min, int max)
 	}
 }
 
+/*
+	pushes all elements (min <= n < max) from stack a to stack b
+*/
 void	ps_push_last(t_ps_list **ps_list, int min, int max)
 {
 	while (ps_lst_hasrange((*ps_list)->stack_a, min, max))

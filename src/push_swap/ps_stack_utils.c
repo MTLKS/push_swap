@@ -6,12 +6,15 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 00:48:56 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/11 00:05:21 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 19:44:07 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+	allocates memory for an integer and returns the pointer
+*/
 static int	*ps_new_content(int count)
 {
 	int	*num;
@@ -21,6 +24,9 @@ static int	*ps_new_content(int count)
 	return (num);
 }
 
+/*
+	changes the values in a linked list to the index if it is sorted
+*/
 void	ps_index_stack(t_list **stack)
 {
 	t_list	*sorted_stack;
@@ -48,6 +54,10 @@ static void	ps_free_arr(char **arr)
 	free(arr);
 }
 
+/*
+	adds the integer value of each string in an array to the back of a
+	linked list
+*/
 static void	ps_add_stack(t_list **stack, char **arr)
 {
 	int		i;
@@ -62,6 +72,9 @@ static void	ps_add_stack(t_list **stack, char **arr)
 	}
 }
 
+/*
+	returns a linked list of integers from an array of strings
+*/
 t_list	*ps_get_stack(int argc, char **argv)
 {
 	t_list	*stack;

@@ -6,12 +6,21 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 15:12:43 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 15:28:16 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 20:02:49 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+	counts the cost to insert n into stack
+
+	a postive result (i) means that
+	the stack will need to be rotated i times
+
+	a negative result (i) means that
+	stack will need to be rotated in reverse i times
+*/
 static int	ps_count_cost(t_list *stack, int n)
 {
 	int	i;
@@ -36,6 +45,29 @@ static int	ps_count_cost(t_list *stack, int n)
 	return (i);
 }
 
+/*
+	finds the min cost to push one element from B to A
+
+	goes through all elements from closest to furthest of stack B
+	finds the rotations on stack A need to push element from stack B to A
+
+	calculates the total cost
+		if rotates the same direction
+			max(cost of A, cost of B)
+		else
+			cost of A + cost of B
+	
+	Reason of calculation:
+		Same direction:
+			A		: ra ra ra ra	= 4
+			B		: rb rb rb		= 3
+			Combined: rr rr rr ra	= 4
+		
+		Different direction:
+			A		: ra ra ra ra	= 4
+			B		: rrb rrb rrb	= 3
+			Combined: ra ra ra ra rrb rrb rrb = 7
+*/
 static void	ps_get_min_cost(t_list **a, t_list **b, t_list **r, int *min)
 {
 	int	*curr;
@@ -76,6 +108,12 @@ static void	ps_init_move(int *move_a, int *move_b, int *cost)
 		*move_b = RRB;
 }
 
+/*
+	executes the operations based on the cost for stack a and stack b,
+	combining if possible
+
+	pushes one element from stack b to stack a
+*/
 static void	ps_smart_insert_op(t_ps_list **ps_list, int *cost)
 {
 	int	move_a;
@@ -103,6 +141,13 @@ static void	ps_smart_insert_op(t_ps_list **ps_list, int *cost)
 	ps_operate(ps_list, PA);
 }
 
+/*
+	inserts elements in current range (min <= n < max) from B to A
+
+	finds the amount of moves required for each element
+	executes the moves for the element that requires the least amount
+	removes the current range
+*/
 void	ps_smart_insert_stack(t_ps_list **ps_list, t_list **r)
 {
 	int		*min;

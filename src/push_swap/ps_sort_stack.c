@@ -6,12 +6,23 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 13:57:28 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 16:13:29 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/13 20:07:20 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+	pushes upper half of the elements in current range (min <= n < max)
+	from stack b to stack a
+
+	create new ranges of upper and lower half of current range and delete
+	current range
+
+	Example :
+	Before : [250,500]->[0,250]
+	After  : [375,500]->[250,375]->[0,250]
+*/
 static void	ps_push_stack(t_ps_list **ps_list, t_list **range)
 {
 	t_list	*curr_range;
@@ -28,6 +39,27 @@ static void	ps_push_stack(t_ps_list **ps_list, t_list **range)
 	ft_lstdelone(curr_range, ps_free_content);
 }
 
+/*
+	pushes lower half of the elements in current range (min <= n < max)
+	from stack a to stack b
+	if n < (25% of range), split to the bottom of stack b
+
+	creates 3 new ranges and deletes current range:
+	1. [min, 25%]
+	2. [25%, 50%]
+	3. [50%, max]
+
+	runs recursively until current stack has 1 element left, pushes element
+	from stack a to stack b
+
+	Example :
+	Before : [0,10]
+	Step 1 : [5,10]->[2,5]->[0,2]
+	Step 2 : [7,10]->[6,7]->[5,6]->[2,5]->[0,2]
+	Step 3 : [8,10]->[7,8]->[7,7]->[6,7]->[5,6]->[2,5]->[0,2]
+	Step 4 : [9,10]->[8,9]->[8,8]->[7,8]->[7,7]->[6,7]->[5,6]->[2,5]->[0,2]
+	End.
+*/
 static void	ps_split_stack(t_ps_list **ps_list, t_list **range)
 {
 	t_list	*curr_range;
@@ -54,6 +86,9 @@ static void	ps_split_stack(t_ps_list **ps_list, t_list **range)
 	ps_split_stack(ps_list, range);
 }
 
+/*
+	loops stack until element with value 0 is at the top
+*/
 void	ps_loop_stack(t_ps_list **ps_list)
 {
 	t_list	**a;
@@ -70,6 +105,19 @@ void	ps_loop_stack(t_ps_list **ps_list)
 	}
 }
 
+/*
+	creates range from 0 to length of stack A
+	splits stack A to stack B
+	checks current range
+		if it exceeds MAX_STACK_SIZE
+			push half of range back to A and split to B
+		if not
+			inserts range from B to A
+	runs until no more ranges left
+	loop stack until 0 is at the top
+	stack is now sorted
+	frees range
+*/
 void	ps_sort_stack(t_ps_list **ps_list)
 {
 	t_list	*range;
@@ -79,7 +127,7 @@ void	ps_sort_stack(t_ps_list **ps_list)
 	ps_split_stack(ps_list, &range);
 	while (range)
 	{
-		if (ps_range_get(range, 1) - ps_range_get(range, 0) > MIN_STACK_SIZE)
+		if (ps_range_get(range, 1) - ps_range_get(range, 0) > MAX_STACK_SIZE)
 		{
 			ps_push_stack(ps_list, &range);
 			ps_split_stack(ps_list, &range);
