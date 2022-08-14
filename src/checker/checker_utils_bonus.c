@@ -6,7 +6,7 @@
 /*   By: maliew <maliew@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:12:29 by maliew            #+#    #+#             */
-/*   Updated: 2022/08/13 18:41:57 by maliew           ###   ########.fr       */
+/*   Updated: 2022/08/14 14:46:09 by maliew           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ps_read_and_operate(t_ps_list **ps_list)
 	while (move)
 	{
 		ps_operate_string(ps_list, move);
+		free(move);
 		move = get_next_line(0);
 	}
 }
